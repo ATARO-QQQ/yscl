@@ -1,0 +1,54 @@
+        body {
+            background-image: url('https://ataro-qqq.github.io/YSCL-home-test-beta-1/スライド2.PNG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .bg-overlay {
+            background-color: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .pattern-dots {
+            background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+            background-size: 16px 16px;
+        }
+        .pattern-grid {
+            background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .pattern-diagonal {
+            background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 50%);
+            background-size: 12px 12px;
+        }
+
+        .slideshow-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: slideFade 25s infinite;
+        }
+        .slideshow-img:nth-child(1) { animation-delay: 0s; }
+        .slideshow-img:nth-child(2) { animation-delay: 5s; }
+        .slideshow-img:nth-child(3) { animation-delay: 10s; }
+        .slideshow-img:nth-child(4) { animation-delay: 15s; }
+        .slideshow-img:nth-child(5) { animation-delay: 20s; }
+
+        @keyframes slideFade {
+            0% { opacity: 0; transform: scale(1); }
+            10% { opacity: 1; transform: scale(1.02); }
+            20% { opacity: 1; transform: scale(1.05); }
+            30% { opacity: 0; transform: scale(1.07); }
+            100% { opacity: 0; transform: scale(1); }
+        }
