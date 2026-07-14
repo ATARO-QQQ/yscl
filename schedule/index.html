@@ -160,7 +160,7 @@
     
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         let currentDate = new Date();
@@ -215,14 +215,13 @@
                 dateHeader.appendChild(dateLabel);
                 cell.appendChild(dateHeader);
                 
-                // --- 日付のフィルタリングロジックをより柔軟に修正 ---
+                // 日付判定ロジック
                 const dayEvents = allEvents.filter(ev => {
                     if (!ev.date) return false;
                     
                     try {
-                        // タイムゾーンや文字列のゆらぎに対応するため、年・月・日を数値で抽出して比較
-                        const dateOnlyStr = String(ev.date).split('T')[0].split(' ')[0]; // 時間部分をカット
-                        const parts = dateOnlyStr.split(/[-/]/); // YYYY-MM-DD や YYYY/MM/DD に対応
+                        const dateOnlyStr = String(ev.date).split('T')[0].split(' ')[0];
+                        const parts = dateOnlyStr.split(/[-/]/);
                         
                         if (parts.length >= 3) {
                             const evYear = parseInt(parts[0], 10);
@@ -235,7 +234,6 @@
                         console.warn("日付データの形式エラー:", ev);
                     }
                     
-                    // フォールバックとして元の完全一致比較も残す
                     const strictDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     return ev.date === strictDateStr;
                 });
@@ -281,7 +279,6 @@
                     appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
                     isCanvasEnv = true;
                 } else {
-                    // ご提供いただいた設定
                     firebaseConfig = {
                         apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
                         authDomain: "yscl-web-calendar.firebaseapp.com",
@@ -295,30 +292,33 @@
 
                 if (firebaseConfig) {
                     const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
                     db = getFirestore(app);
 
-                    // 匿名ログインは試みるが、失敗しても（未ログイン状態でも）処理を止めないようにする
-                    try {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth).catch(e => console.warn("匿名ログインをスキップしました(閲覧のみ)"));
+                    // プレビュー環境（Canvas）の時だけ特殊な認証を行う
+                    // 本番環境（ご自身のサイト）では不要なので Authentication 自体を完全にスキップします
+                    if (isCanvasEnv) {
+                        auth = getAuth(app);
+                        try {
+                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                                await signInWithCustomToken(auth, __initial_auth_token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (authError) {
+                            console.warn("プレビュー環境の認証スキップ:", authError.message);
                         }
-                    } catch (authError) {
-                        console.warn("認証処理スキップ:", authError);
                     }
 
-                    // 認証状態（ログインしているかどうか）に関わらず、すぐにデータを取得しにいく
+                    // 🔒 エラーの原因だった認証処理をバイパスし、即座にFirestoreデータを取得開始する
                     let eventsRef;
-                    let collectionName = 'schedule_events'; // 🔍 ここが怪しいです！
+                    let collectionName = 'schedule_events'; // ⚠️ コレクション名が合っているか確認してください
 
                     if (isCanvasEnv) {
                         eventsRef = collection(db, 'artifacts', appId, 'public', 'data', collectionName);
                     } else {
-                        // ご自身のFirebaseプロジェクト用のパス
+                        // 本番環境：直接データを読み込む
                         eventsRef = collection(db, collectionName);
-                        console.log(`📡 [通信開始] コレクション「${collectionName}」を読み込んでいます...`);
+                        console.log(`📡 [通信開始] コレクション「${collectionName}」を読み込んでいます... (認証なし)`);
                     }
                     
                     onSnapshot(eventsRef, (snapshot) => {
