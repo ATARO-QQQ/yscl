@@ -35,7 +35,7 @@
     <main class="flex-grow max-w-3xl mx-auto w-full px-4 py-10 sm:py-16">
         
         <!-- ==============================================
-             ログインフォーム
+             未ログイン時：ログインフォーム
         =============================================== -->
         <section id="login-section" class="glass-card rounded-[2rem] p-8 md:p-12 shadow-xl border-t-4 border-gray-800 text-center animate-fade-in-up">
             <div class="inline-flex items-center justify-center p-4 bg-gray-100 text-gray-700 rounded-2xl mb-6 shadow-sm">
@@ -66,7 +66,7 @@
         </section>
 
         <!-- ==============================================
-             スケジュール入力フォーム
+             ログイン済：スケジュール入力フォーム
         =============================================== -->
         <section id="admin-section" class="hidden glass-card rounded-[2rem] p-8 md:p-12 shadow-xl border-t-4 border-brand animate-fade-in-up">
             <div class="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
@@ -141,11 +141,13 @@
 
     <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
     
+    <!-- Firebase 認証とデータベース処理 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // HTML要素の取得
         const loginSection = document.getElementById('login-section');
         const adminSection = document.getElementById('admin-section');
         const loginForm = document.getElementById('login-form');
@@ -164,16 +166,16 @@
                 firebaseConfig = JSON.parse(__firebase_config);
                 appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
             } else {
-                // ここにFirebase Configを入れる
-                const firebaseConfig = {
-                                        apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
-                                        authDomain: "yscl-web-calendar.firebaseapp.com",
-                                        projectId: "yscl-web-calendar",
-                                        storageBucket: "yscl-web-calendar.firebasestorage.app",
-                                        messagingSenderId: "315878967352",
-                                        appId: "1:315878967352:web:97611d05d15828c52c3ecd",
-                                        measurementId: "G-DLP2P9JK0E"
-                                        };
+                // 修正：const を削除して、外側で宣言した firebaseConfig に直接代入します
+                firebaseConfig = {
+                    apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
+                    authDomain: "yscl-web-calendar.firebaseapp.com",
+                    projectId: "yscl-web-calendar",
+                    storageBucket: "yscl-web-calendar.firebasestorage.app",
+                    messagingSenderId: "315878967352",
+                    appId: "1:315878967352:web:97611d05d15828c52c3ecd",
+                    measurementId: "G-DLP2P9JK0E"
+                };
                 
                 appId = 'yscl-calendar'; 
             }
@@ -183,12 +185,15 @@
                 auth = getAuth(app);
                 db = getFirestore(app);
 
+                // ログイン状態の監視
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
+                        // ログイン成功：管理画面を表示
                         loginSection.classList.add('hidden');
                         adminSection.classList.remove('hidden');
                         console.log("管理者としてログインしました");
                     } else {
+                        // 未ログイン：ログイン画面を表示
                         loginSection.classList.remove('hidden');
                         adminSection.classList.add('hidden');
                     }
@@ -196,6 +201,7 @@
             }
         }
 
+        // ログイン処理
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
@@ -207,6 +213,7 @@
             loginError.classList.add('hidden');
 
             try {
+                // EmailとPasswordを使ったログイン
                 await signInWithEmailAndPassword(auth, email, password);
             } catch (error) {
                 console.error("ログインエラー:", error);
@@ -214,16 +221,18 @@
             } finally {
                 loginBtn.innerHTML = '<i data-lucide="log-in" class="w-5 h-5"></i> ログインする';
                 loginBtn.disabled = false;
-                lucide.createIcons();
+                lucide.createIcons(); // アイコン再描画
             }
         });
 
+        // ログアウト処理
         logoutBtn.addEventListener('click', async () => {
             if(confirm("ログアウトしますか？")) {
                 await signOut(auth);
             }
         });
 
+        // 予定の追加処理
         addEventForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -237,8 +246,10 @@
 
             if (auth.currentUser) {
                 try {
+                    // スケジュールを保存する場所を指定
                     const eventsRef = collection(db, 'artifacts', appId, 'public', 'data', 'schedule_events');
                     
+                    // データベースに書き込み
                     await addDoc(eventsRef, { 
                         date: date, 
                         title: title, 
@@ -247,9 +258,11 @@
                         createdBy: auth.currentUser.email
                     });
                     
+                    // 成功メッセージ表示
                     addSuccess.classList.remove('hidden');
                     addEventForm.reset();
                     
+                    // 3秒後に成功メッセージを消す
                     setTimeout(() => {
                         addSuccess.classList.add('hidden');
                     }, 3000);
