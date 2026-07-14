@@ -15,7 +15,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
-
     <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
 </head>
 <body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
@@ -200,8 +199,6 @@
                 const cell = document.createElement('div');
                 cell.className = 'bg-white/70 backdrop-blur-sm rounded-xl min-h-[100px] p-1.5 sm:p-2 border border-white/50 hover:bg-white hover:shadow-md transition-all relative flex flex-col gap-1.5';
                 
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                
                 const dayOfWeek = (startDayOfWeek + day - 1) % 7;
                 const dateHeader = document.createElement('div');
                 dateHeader.className = 'flex justify-end';
@@ -218,7 +215,31 @@
                 dateHeader.appendChild(dateLabel);
                 cell.appendChild(dateHeader);
                 
-                const dayEvents = allEvents.filter(e => e.date === dateStr);
+                // --- 日付のフィルタリングロジックをより柔軟に修正 ---
+                const dayEvents = allEvents.filter(ev => {
+                    if (!ev.date) return false;
+                    
+                    try {
+                        // タイムゾーンや文字列のゆらぎに対応するため、年・月・日を数値で抽出して比較
+                        const dateOnlyStr = String(ev.date).split('T')[0].split(' ')[0]; // 時間部分をカット
+                        const parts = dateOnlyStr.split(/[-/]/); // YYYY-MM-DD や YYYY/MM/DD に対応
+                        
+                        if (parts.length >= 3) {
+                            const evYear = parseInt(parts[0], 10);
+                            const evMonth = parseInt(parts[1], 10);
+                            const evDay = parseInt(parts[2], 10);
+                            
+                            return evYear === year && (evMonth - 1) === month && evDay === day;
+                        }
+                    } catch (e) {
+                        console.warn("日付データの形式エラー:", ev);
+                    }
+                    
+                    // フォールバックとして元の完全一致比較も残す
+                    const strictDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    return ev.date === strictDateStr;
+                });
+                
                 dayEvents.forEach(ev => {
                     const evEl = document.createElement('div');
                     evEl.className = 'text-[11px] sm:text-xs font-bold px-1.5 py-1 rounded-md truncate cursor-pointer shadow-sm border transform hover:scale-105 transition-transform';
@@ -284,6 +305,8 @@
                     onAuthStateChanged(auth, (user) => {
                         if (!user) return;
                         
+                        // ※ もしご自身のFirebaseプロジェクトでルートの「schedule_events」をご利用されている場合は、
+                        // 以下のパス構造の不一致でデータが取得できていない可能性もあります。
                         const eventsRef = collection(db, 'artifacts', appId, 'public', 'data', 'schedule_events');
                         
                         onSnapshot(eventsRef, (snapshot) => {
@@ -291,6 +314,7 @@
                             renderCalendar();
                         }, (error) => {
                             console.error("Firestore同期エラー:", error);
+                            // データの読み込みに失敗した場合のみフォールバックデータを表示
                             fallbackData();
                         });
                     });
