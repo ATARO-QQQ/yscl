@@ -35,7 +35,7 @@
     
     <div class="fixed inset-0 bg-overlay -z-10"></div>
     
-    <header class="glass-card sticky top-0 z-50 border-b border-white/60">
+     <header class="glass-card sticky top-0 z-50 border-b border-white/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 sm:h-20">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='https://ataro-qqq.github.io/yscl/';">
@@ -45,12 +45,13 @@
                 <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
                     <a href="https://ataro-qqq.github.io/yscl/about" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">清掃ラボとは</a>
                     <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">スケジュール</a>
-                    <a href="#" class="text-brand bg-white/70 shadow-sm transition-colors text-sm font-bold px-3 py-2 rounded-lg">ニュース</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
                     <div class="w-px h-5 bg-gray-300 mx-1"></div>
                     <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
                         <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
                     </a>
                 </nav>
+
                 <div class="lg:hidden flex items-center">
                     <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brand focus:outline-none p-2 rounded-md hover:bg-white/50 transition-colors">
                         <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
@@ -59,32 +60,37 @@
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full z-50">
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">清掃ラボとは</a>
                 <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">スケジュール</a>
-                <a href="#" class="block px-3 py-3 rounded-md text-base font-bold text-brand bg-brand-light/50">ニュース</a>
+                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
                 <a href="https://ataro-qqq.github.io/yscl/archive" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">アーカイブ</a>
                 <a href="https://ataro-qqq.github.io/yscn/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">YSCN ホーム</a>
                 <div class="border-t border-gray-200 my-2 pt-2">
                     <a href="https://www.soei.ed.jp/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
                         <i data-lucide="school" class="w-5 h-5"></i> 学校公式HP
                     </a>
+                    <a href="https://www.soei.ed.jp/s_junior/j_club/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="users" class="w-5 h-5"></i> クラブ活動
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
+
     <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
         
-        <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-brand">
-            <div class="absolute inset-0 pattern-dots text-brand opacity-10 group-hover:opacity-20 transition-opacity"></div>
+        <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-amber-500">
+            <div class="absolute inset-0 pattern-dots text-amber-500 opacity-10 group-hover:opacity-20 transition-opacity"></div>
             <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:-rotate-12 z-0">
-                <i data-lucide="newspaper" class="w-64 h-64 text-brand"></i>
+                <i data-lucide="newspaper" class="w-64 h-64 text-amber-500"></i>
             </div>
             
             <div class="relative z-10 flex flex-col items-center">
-                <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-brand-light to-white text-brand rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
+                <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-amber-100 to-white text-amber-600 rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
                     <i data-lucide="newspaper" class="w-10 h-10"></i>
                 </div>
                 <h1 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tight mb-6">ニュース＆活動報告</h1>
@@ -97,7 +103,7 @@
         <section class="glass-card rounded-[2rem] p-6 md:p-8 shadow-md border border-white/50">
             <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div class="flex flex-wrap gap-2 w-full md:w-auto">
-                    <button onclick="filterCategory('all')" id="btn-cat-all" class="category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-brand text-white">
+                    <button onclick="filterCategory('all')" id="btn-cat-all" class="category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-amber-500 text-white">
                         すべて
                     </button>
                     <button onclick="filterCategory('flash')" id="btn-cat-flash" class="category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-white/80 hover:bg-white text-gray-700 border border-gray-200">
@@ -115,14 +121,14 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                         <i data-lucide="search" class="w-5 h-5"></i>
                     </span>
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="ニュースを検索..." class="w-full pl-10 pr-4 py-2.5 rounded-full border border-gray-200 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-40 bg-white/80">
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="ニュースを検索..." class="w-full pl-10 pr-4 py-2.5 rounded-full border border-gray-200 shadow-sm focus:border-amber-400 focus:ring focus:ring-amber-200 focus:ring-opacity-40 bg-white/80">
                 </div>
             </div>
         </section>
 
         <section class="relative">
             <div id="news-loading" class="text-center py-24 text-gray-500 font-bold flex flex-col items-center justify-center bg-white/50 rounded-[2rem] border border-white/50 backdrop-blur-sm shadow-sm">
-                <i data-lucide="loader-2" class="w-12 h-12 animate-spin mb-4 text-brand"></i>
+                <i data-lucide="loader-2" class="w-12 h-12 animate-spin mb-4 text-amber-500"></i>
                 ニュースを読み込んでいます...
             </div>
 
@@ -347,12 +353,12 @@
                             <span class="${catInfo.class} text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">${catInfo.label}</span>
                             <span class="text-xs font-bold text-gray-500">${post.date}</span>
                         </div>
-                        <h3 class="text-lg font-black text-gray-800 mb-3 group-hover:text-brand transition-colors line-clamp-2">${escapeHtml(post.title)}</h3>
+                        <h3 class="text-lg font-black text-gray-800 mb-3 group-hover:text-amber-600 transition-colors line-clamp-2">${escapeHtml(post.title)}</h3>
                         <p class="text-gray-600 font-medium text-sm leading-relaxed mb-6 line-clamp-3">${escapeHtml(post.content)}</p>
                     </div>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 text-xs font-bold text-gray-400">
                         <span class="flex items-center gap-1"><i data-lucide="user" class="w-3.5 h-3.5"></i> ${escapeHtml(post.createdBy || '管理者')}</span>
-                        <span class="text-brand hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        <span class="text-amber-600 hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                             詳細を読む <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                         </span>
                     </div>
@@ -398,7 +404,7 @@
             
             const activeBtn = document.getElementById(`btn-cat-${cat}`);
             if (activeBtn) {
-                activeBtn.className = "category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-brand text-white";
+                activeBtn.className = "category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-amber-500 text-white";
             }
             
             renderNews();
