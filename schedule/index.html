@@ -274,11 +274,14 @@
         async function initFirebase() {
             try {
                 let firebaseConfig;
+                let isCanvasEnv = false;
 
                 if (typeof __firebase_config !== 'undefined') {
                     firebaseConfig = JSON.parse(__firebase_config);
                     appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
+                    isCanvasEnv = true;
                 } else {
+                    // ご提供いただいた設定
                     firebaseConfig = {
                         apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
                         authDomain: "yscl-web-calendar.firebaseapp.com",
@@ -288,7 +291,6 @@
                         appId: "1:315878967352:web:97611d05d15828c52c3ecd",
                         measurementId: "G-DLP2P9JK0E"
                     };
-                    appId = 'yscl-calendar';
                 }
 
                 if (firebaseConfig) {
@@ -296,28 +298,44 @@
                     auth = getAuth(app);
                     db = getFirestore(app);
 
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
+                    // 匿名ログインは試みるが、失敗しても（未ログイン状態でも）処理を止めないようにする
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth).catch(e => console.warn("匿名ログインをスキップしました(閲覧のみ)"));
+                        }
+                    } catch (authError) {
+                        console.warn("認証処理スキップ:", authError);
                     }
 
-                    onAuthStateChanged(auth, (user) => {
-                        if (!user) return;
+                    // 認証状態（ログインしているかどうか）に関わらず、すぐにデータを取得しにいく
+                    let eventsRef;
+                    let collectionName = 'schedule_events'; // 🔍 ここが怪しいです！
+
+                    if (isCanvasEnv) {
+                        eventsRef = collection(db, 'artifacts', appId, 'public', 'data', collectionName);
+                    } else {
+                        // ご自身のFirebaseプロジェクト用のパス
+                        eventsRef = collection(db, collectionName);
+                        console.log(`📡 [通信開始] コレクション「${collectionName}」を読み込んでいます...`);
+                    }
+                    
+                    onSnapshot(eventsRef, (snapshot) => {
+                        console.log(`✅ [データ取得完了] 「${collectionName}」から ${snapshot.size} 件の予定を取得しました！`);
                         
-                        // ※ もしご自身のFirebaseプロジェクトでルートの「schedule_events」をご利用されている場合は、
-                        // 以下のパス構造の不一致でデータが取得できていない可能性もあります。
-                        const eventsRef = collection(db, 'artifacts', appId, 'public', 'data', 'schedule_events');
-                        
-                        onSnapshot(eventsRef, (snapshot) => {
-                            allEvents = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                            renderCalendar();
-                        }, (error) => {
-                            console.error("Firestore同期エラー:", error);
-                            // データの読み込みに失敗した場合のみフォールバックデータを表示
-                            fallbackData();
+                        allEvents = snapshot.docs.map(doc => {
+                            const data = doc.data();
+                            console.log(`📄 データの中身 (ID: ${doc.id}):`, data);
+                            return { id: doc.id, ...data };
                         });
+                        
+                        renderCalendar();
+                    }, (error) => {
+                        console.error("❌ [Firestoreエラー] データの読み込みに失敗しました:", error);
+                        fallbackData();
                     });
+
                 } else {
                     fallbackData();
                 }
