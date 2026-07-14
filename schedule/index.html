@@ -215,6 +215,7 @@
                 dateHeader.appendChild(dateLabel);
                 cell.appendChild(dateHeader);
                 
+                // 日付判定ロジック
                 const dayEvents = allEvents.filter(ev => {
                     if (!ev.date) return false;
                     
@@ -287,12 +288,15 @@
                         appId: "1:315878967352:web:97611d05d15828c52c3ecd",
                         measurementId: "G-DLP2P9JK0E"
                     };
+                    // 入力サイトと同じ appId を明示的に設定
+                    appId = 'yscl-calendar';
                 }
 
                 if (firebaseConfig) {
                     const app = initializeApp(firebaseConfig);
                     db = getFirestore(app);
 
+                    // プレビュー環境（Canvas）の時だけ特殊な認証を行う
                     if (isCanvasEnv) {
                         auth = getAuth(app);
                         try {
@@ -306,22 +310,18 @@
                         }
                     }
 
-                    let eventsRef;
-                    let collectionName = 'yscl-calendar'; 
-
-                    if (isCanvasEnv) {
-                        eventsRef = collection(db, 'artifacts', appId, 'public', 'data', collectionName);
-                    } else {
-                        eventsRef = collection(db, collectionName);
-                        console.log(`📡 [通信開始] コレクション「${collectionName}」を読み込んでいます... (認証なし)`);
-                    }
+                    // 入力サイトと「完全に同じ階層」からデータを読み込む
+                    // （入力サイトが artifacts/yscl-calendar/public/data/schedule_events に保存しているため）
+                    const eventsRef = collection(db, 'artifacts', appId, 'public', 'data', 'schedule_events');
+                    
+                    console.log(`📡 [通信開始] artifacts/${appId}/public/data/schedule_events を読み込んでいます...`);
                     
                     onSnapshot(eventsRef, (snapshot) => {
-                        console.log(`✅ [データ取得完了] 「${collectionName}」から ${snapshot.size} 件の予定を取得しました！`);
+                        console.log(`✅ [データ取得完了] ${snapshot.size} 件の予定を取得しました！`);
                         
                         allEvents = snapshot.docs.map(doc => {
                             const data = doc.data();
-                            console.log(`📄 データの中身 (ID: ${doc.id}):`, data);
+                            // console.log(`📄 データの中身 (ID: ${doc.id}):`, data); // 確認用ログ
                             return { id: doc.id, ...data };
                         });
                         
