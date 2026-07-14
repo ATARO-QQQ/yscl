@@ -255,6 +255,22 @@
                 const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
                 appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
 
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                    appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
+                } else {
+                    firebaseConfig = {
+                        apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
+                        authDomain: "yscl-web-calendar.firebaseapp.com",
+                        projectId: "yscl-web-calendar",
+                        storageBucket: "yscl-web-calendar.firebasestorage.app",
+                        messagingSenderId: "315878967352",
+                        appId: "1:315878967352:web:97611d05d15828c52c3ecd",
+                        measurementId: "G-DLP2P9JK0E"
+                    };
+                    appId = 'yscl-calendar';
+                }
+
                 if (firebaseConfig) {
                     const app = initializeApp(firebaseConfig);
                     auth = getAuth(app);
