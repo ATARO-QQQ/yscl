@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清掃ラボとは - 横浜創英中学・高等学校 清掃ラボ</title>
+    
+    <link rel="icon" href="https://ataro-qqq.github.io/yscl/img/favicon/YSCL favi.ico" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
+
+    <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
+</head>
+<body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
+    
+    <div class="fixed inset-0 bg-overlay -z-10"></div>
+
+    <header class="glass-card sticky top-0 z-50 border-b border-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='https://ataro-qqq.github.io/yscl/';">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomoji.png" alt="清掃ラボ ロゴ" class="h-10 sm:h-12 w-auto drop-shadow-md hover:opacity-80 transition-opacity">
+                </div>
+                
+                <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
+                    <a href="https://ataro-qqq.github.io/yscl/about" class="text-brand bg-white/70 shadow-sm transition-colors text-sm font-bold px-3 py-2 rounded-lg">清掃ラボとは</a>
+                    <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">スケジュール</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
+                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
+                        <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
+                    </a>
+                </nav>
+
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brand focus:outline-none p-2 rounded-md hover:bg-white/50 transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                        <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-brand bg-brand-light/50">清掃ラボとは</a>
+                <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">スケジュール</a>
+                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
+                <a href="https://ataro-qqq.github.io/yscl/archive" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">アーカイブ</a>
+                <a href="https://ataro-qqq.github.io/yscn/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">YSCN ホーム</a>
+                <div class="border-t border-gray-200 my-2 pt-2">
+                    <a href="https://www.soei.ed.jp/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="school" class="w-5 h-5"></i> 学校公式HP
+                    </a>
+                    <a href="https://www.soei.ed.jp/s_junior/j_club/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="users" class="w-5 h-5"></i> クラブ活動
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
+        
+        <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-brand">
+            <div class="absolute inset-0 pattern-dots text-brand opacity-10 group-hover:opacity-20 transition-opacity"></div>
+            <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:rotate-12 z-0">
+                <i data-lucide="info" class="w-64 h-64 text-brand"></i>
+            </div>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-brand-light to-white text-brand rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
+                    <i data-lucide="info" class="w-10 h-10"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tight mb-6">清掃ラボとは</h1>
+                <p class="text-gray-700 font-bold max-w-2xl mx-auto text-lg leading-relaxed bg-white/60 p-5 rounded-2xl backdrop-blur-sm shadow-sm border border-white/50">
+                    横浜創英中学・高等学校をより美しく、快適な環境にするために活動するプロジェクト。日々の学校生活の中で「気づき」を大切にし、「行動」へと移します。
+                </p>
+            </div>
+        </div>
+
+        <section class="glass-card rounded-[2rem] p-8 md:p-12 relative overflow-hidden group hover:shadow-2xl transition-all duration-300 border-t-4 border-brand">
+            <div class="absolute inset-0 pattern-grid text-brand opacity-5"></div>
+            <div class="absolute -right-16 -top-16 opacity-[0.04] group-hover:opacity-10 transition-all duration-500 transform group-hover:rotate-12 group-hover:scale-110 z-0">
+                <i data-lucide="sparkles" class="w-80 h-80 text-brand"></i>
+            </div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+                <div class="flex-1 space-y-5">
+                    <div class="inline-block bg-brand/10 text-brand px-4 py-1.5 rounded-full text-sm font-black tracking-wider uppercase shadow-sm">Our Mission</div>
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-800 leading-snug">学校をより美しく、<br class="hidden md:block">心も豊かに。</h2>
+                    <div class="w-16 h-1.5 bg-brand rounded-full"></div>
+                    <p class="text-gray-700 leading-relaxed font-medium bg-white/40 p-4 rounded-xl border border-white/30 backdrop-blur-sm">
+                        清掃ラボは、単なる掃除活動に留まらず、「どうすれば学校がもっと良くなるか」を考え、実践する場（ラボ）です。<br>
+                        校舎の美化を通じて奉仕の精神を育み、生徒全員が気持ちよく過ごせる環境づくりに貢献します。自ら課題を見つけ、仲間と協力して解決していくプロセスを大切にしています。
+                    </p>
+                </div>
+                <div class="flex-shrink-0 relative">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-brand-light to-white rounded-[2rem] flex items-center justify-center shadow-lg border-4 border-white transform rotate-3 group-hover:rotate-6 group-hover:scale-105 transition-all duration-500">
+                        <img src="https://ataro-qqq.github.io/yscl/img/rogomoji.png" alt="清掃ラボ" class="w-4/5 h-auto opacity-90 drop-shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <h2 class="text-2xl font-black text-gray-800 text-center flex items-center justify-center gap-2">
+                <i data-lucide="activity" class="text-brand w-8 h-8"></i>
+                主な活動内容
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-b-4 border-blue-500">
+                    <div class="absolute inset-0 pattern-dots text-blue-600 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute -bottom-6 -right-6 opacity-[0.04] group-hover:opacity-10 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12 z-0">
+                        <i data-lucide="sparkles" class="w-32 h-32 text-blue-600"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="bg-gradient-to-br from-blue-100 to-white border border-white text-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                            <i data-lucide="sparkles" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-gray-800 mb-2">日常・定期清掃の推進</h3>
+                        <p class="text-gray-700 font-medium text-sm leading-relaxed">
+                            通常の清掃時間では手の届きにくい場所や、汚れが溜まりやすい共有スペースを重点的に清掃・メンテナンスします。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-b-4 border-green-500">
+                    <div class="absolute inset-0 pattern-diagonal text-green-600 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute -bottom-6 -right-6 opacity-[0.04] group-hover:opacity-10 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12 z-0">
+                        <i data-lucide="leaf" class="w-32 h-32 text-green-600"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="bg-gradient-to-br from-green-100 to-white border border-white text-green-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-110 group-hover:-rotate-6 transition-all">
+                            <i data-lucide="leaf" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-gray-800 mb-2">エコ・リサイクル活動</h3>
+                        <p class="text-gray-700 font-medium text-sm leading-relaxed">
+                            ゴミの分別徹底や、リサイクル可能な資源の回収を呼びかけ、環境に配慮したサステナブルな学校づくりを目指します。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-b-4 border-amber-500">
+                    <div class="absolute inset-0 pattern-grid text-amber-600 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute -bottom-6 -right-6 opacity-[0.04] group-hover:opacity-10 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12 z-0">
+                        <i data-lucide="lightbulb" class="w-32 h-32 text-amber-600"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="bg-gradient-to-br from-amber-100 to-white border border-white text-amber-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all">
+                            <i data-lucide="lightbulb" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-gray-800 mb-2">美化啓発・アイデア出し</h3>
+                        <p class="text-gray-700 font-medium text-sm leading-relaxed">
+                            ポスター制作やSNSを通じた情報発信、効率的な清掃ツールの導入提案など、美化に対する意識向上のための企画を行います。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-[2rem] p-8 md:p-12 text-center relative overflow-hidden group border-t-4 border-t-brand hover:shadow-2xl transition-all duration-300">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-light/60 to-transparent z-0"></div>
+            <div class="absolute inset-0 pattern-dots text-brand opacity-5 group-hover:opacity-10 transition-opacity z-0" style="background-size: 24px 24px;"></div>
+            
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] group-hover:opacity-[0.04] transition-all duration-700 transform group-hover:scale-125 z-0 pointer-events-none">
+                <i data-lucide="users" class="w-96 h-96 text-brand"></i>
+            </div>
+
+            <div class="relative z-10">
+                <h3 class="text-2xl md:text-3xl font-black text-gray-800 mb-4">私たちと一緒に活動しませんか？</h3>
+                
+                <p class="text-gray-700 font-bold mb-8 max-w-2xl mx-auto bg-white/40 p-4 rounded-xl backdrop-blur-sm border border-white/50">
+                    清掃ラボでは、学年を問わず学校を綺麗にしたいという思いを持つメンバーを随時募集しています。活動の様子はニュースやスケジュールからご確認ください。
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="w-full sm:w-auto bg-brand text-white px-8 py-4 rounded-full font-bold hover:bg-brand-dark transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform flex items-center justify-center gap-2 border border-brand-dark">
+                        <i data-lucide="newspaper" class="w-5 h-5"></i>
+                        最新の活動を見る
+                    </a>
+                    <a href="https://ataro-qqq.github.io/yscl/schedule" class="w-full sm:w-auto bg-white text-gray-800 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform border-2 border-gray-100 flex items-center justify-center gap-2 group-hover:border-brand-light">
+                        <i data-lucide="calendar-days" class="w-5 h-5 text-gray-500 group-hover:text-brand transition-colors"></i>
+                        スケジュールを確認
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+  
+    <footer class="bg-gray-900 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomojiw.png" alt="清掃ラボ ロゴ" class="h-8 w-auto opacity-75 brightness-0 invert">
+                    <div class="bg-gray-800 px-4 py-2 rounded-full text-sm font-bold text-gray-300 shadow-sm flex items-center gap-2 border border-gray-700">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-light"></i>
+                        <span id="datetime-display">日時を取得中...</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-3 text-sm text-gray-400 font-medium">
+                    <div class="flex flex-wrap justify-center gap-4 mb-1">
+                        <a href="https://www.soei.ed.jp/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">学校HP</a>
+                        <a href="https://www.soei.ed.jp/s_junior/j_club/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">クラブ活動</a>
+                        <button onclick="window.location.href='https://ataro-qqq.github.io/yscl/';" class="hover:text-white transition-colors cursor-pointer bg-gray-800 px-3 py-1 rounded-full border border-gray-700">ホームへ戻る</button>
+                    </div>
+                    <p class="text-xs">※お使いの端末によっては、正しく表示されない場合がございます。</p>
+                    <p>&copy; 2023 YOKOHAMA SOEI Junior & Senior High School Cleaning lab</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
+</body>
+</html>
