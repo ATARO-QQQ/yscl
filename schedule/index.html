@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スケジュール - 横浜創英中学・高等学校 清掃ラボ</title>
+    
+    <link rel="icon" href="https://ataro-qqq.github.io/yscl/img/favicon/YSCL favi.ico" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
+
+    <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
+</head>
+<body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
+    
+    <div class="fixed inset-0 bg-overlay -z-10"></div>
+
+    <header class="glass-card sticky top-0 z-50 border-b border-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='https://ataro-qqq.github.io/yscl/';">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomoji.png" alt="清掃ラボ ロゴ" class="h-10 sm:h-12 w-auto drop-shadow-md hover:opacity-80 transition-opacity">
+                </div>
+                
+                <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
+                    <a href="https://ataro-qqq.github.io/yscl/about" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">清掃ラボとは</a>
+                    <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-brand bg-white/70 shadow-sm transition-colors text-sm font-bold px-3 py-2 rounded-lg">スケジュール</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
+                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
+                        <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
+                    </a>
+                </nav>
+
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brand focus:outline-none p-2 rounded-md hover:bg-white/50 transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                        <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full z-50">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">清掃ラボとは</a>
+                <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-brand bg-brand-light/50">スケジュール</a>
+                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
+                <a href="https://ataro-qqq.github.io/yscl/archive" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">アーカイブ</a>
+                <a href="https://ataro-qqq.github.io/yscn/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">YSCN ホーム</a>
+                <div class="border-t border-gray-200 my-2 pt-2">
+                    <a href="https://www.soei.ed.jp/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="school" class="w-5 h-5"></i> 学校公式HP
+                    </a>
+                    <a href="https://www.soei.ed.jp/s_junior/j_club/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="users" class="w-5 h-5"></i> クラブ活動
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
+        
+        <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-green-500">
+            <div class="absolute inset-0 pattern-dots text-green-600 opacity-10 group-hover:opacity-20 transition-opacity"></div>
+            <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:-rotate-12 z-0">
+                <i data-lucide="calendar-days" class="w-64 h-64 text-green-600"></i>
+            </div>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-green-100 to-white text-green-600 rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
+                    <i data-lucide="calendar-days" class="w-10 h-10"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tight mb-6">活動スケジュール</h1>
+                <p class="text-gray-700 font-bold max-w-2xl mx-auto text-lg leading-relaxed bg-white/60 p-5 rounded-2xl backdrop-blur-sm shadow-sm border border-white/50">
+                    清掃ラボの今後の活動予定やミーティングの日程を確認できます。
+                </p>
+            </div>
+        </div>
+
+        <section class="glass-card rounded-[2rem] p-6 md:p-10 relative overflow-hidden group hover:shadow-2xl transition-all duration-300 border-t-4 border-green-500">
+            <div class="absolute inset-0 pattern-grid text-green-600 opacity-5"></div>
+            
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 opacity-[0.02] group-hover:opacity-[0.04] transition-all duration-700 transform group-hover:scale-110 z-0 pointer-events-none">
+                <i data-lucide="calendar" class="w-96 h-96 text-green-600"></i>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center justify-between mb-8 bg-white/60 p-4 rounded-2xl border border-white/50 backdrop-blur-sm shadow-sm">
+                    <button id="prev-month" class="p-3 rounded-full hover:bg-white hover:shadow-md transition-all text-gray-600 hover:text-green-600 flex items-center group-hover:-translate-x-1">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    
+                    <h2 id="current-month-display" class="text-2xl md:text-3xl font-black text-gray-800 flex items-center gap-2">
+                        ----年 --月
+                    </h2>
+                    
+                    <button id="next-month" class="p-3 rounded-full hover:bg-white hover:shadow-md transition-all text-gray-600 hover:text-green-600 flex items-center group-hover:translate-x-1">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <div id="calendar-loading" class="text-center py-16 text-gray-500 font-bold flex flex-col items-center justify-center">
+                    <i data-lucide="loader-2" class="w-10 h-10 animate-spin mb-4 text-green-500"></i>
+                    予定データを読み込んでいます...
+                </div>
+
+                <div id="calendar-grid" class="grid grid-cols-7 gap-1.5 sm:gap-2 md:gap-3 hidden relative z-10">
+                </div>
+                
+                <div class="mt-8 flex flex-wrap gap-5 justify-end text-sm font-bold text-gray-700 bg-white/50 p-4 rounded-xl border border-white/40 backdrop-blur-sm">
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-blue-50/70 rounded-lg border border-blue-100">
+                        <span class="w-3.5 h-3.5 rounded-full bg-blue-400 shadow-sm shadow-blue-200"></span> 定期清掃
+                    </div>
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-green-50/70 rounded-lg border border-green-100">
+                        <span class="w-3.5 h-3.5 rounded-full bg-green-400 shadow-sm shadow-green-200"></span> エコ活動
+                    </div>
+                    <div class="flex items-center gap-2 px-3 py-1.5 bg-amber-50/70 rounded-lg border border-amber-100">
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-400 shadow-sm shadow-amber-200"></span> イベント・MTG
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomojiw.png" alt="清掃ラボ ロゴ" class="h-8 w-auto opacity-75 brightness-0 invert">
+                    <div class="bg-gray-800 px-4 py-2 rounded-full text-sm font-bold text-gray-300 shadow-sm flex items-center gap-2 border border-gray-700">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-light"></i>
+                        <span id="datetime-display">日時を取得中...</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-3 text-sm text-gray-400 font-medium">
+                    <div class="flex flex-wrap justify-center gap-4 mb-1">
+                        <a href="https://www.soei.ed.jp/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">学校HP</a>
+                        <a href="https://www.soei.ed.jp/s_junior/j_club/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">クラブ活動</a>
+                        <button onclick="window.location.href='https://ataro-qqq.github.io/yscl/';" class="hover:text-white transition-colors cursor-pointer bg-gray-800 px-3 py-1 rounded-full border border-gray-700">ホームへ戻る</button>
+                    </div>
+                    <p class="text-xs">※お使いの端末によっては、正しく表示されない場合がございます。</p>
+                    <p>&copy; 2023 YOKOHAMA SOEI Junior & Senior High School Cleaning lab</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let currentDate = new Date();
+        let allEvents = [];
+        let db, auth, appId;
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth(); 
+            
+            document.getElementById('current-month-display').innerText = `${year}年 ${month + 1}月`;
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startDayOfWeek = firstDay.getDay(); 
+            
+            const calendarGrid = document.getElementById('calendar-grid');
+            calendarGrid.innerHTML = ''; 
+            
+            const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+            dayNames.forEach((day, index) => {
+                const dayEl = document.createElement('div');
+                dayEl.className = `text-center font-bold text-sm py-2 bg-white/40 rounded-xl shadow-sm border border-white/50 ${index === 0 ? 'text-red-500' : index === 6 ? 'text-blue-500' : 'text-gray-600'}`;
+                dayEl.innerText = day;
+                calendarGrid.appendChild(dayEl);
+            });
+            
+            for (let i = 0; i < startDayOfWeek; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'bg-white/20 rounded-xl min-h-[100px] border border-white/20 hidden sm:block';
+                calendarGrid.appendChild(emptyCell);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'bg-white/70 backdrop-blur-sm rounded-xl min-h-[100px] p-1.5 sm:p-2 border border-white/50 hover:bg-white hover:shadow-md transition-all relative flex flex-col gap-1.5';
+                
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                const dayOfWeek = (startDayOfWeek + day - 1) % 7;
+                const dateHeader = document.createElement('div');
+                dateHeader.className = 'flex justify-end';
+
+                const dateLabel = document.createElement('span');
+                dateLabel.className = `text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full ${dayOfWeek === 0 ? 'text-red-500' : dayOfWeek === 6 ? 'text-blue-500' : 'text-gray-700'}`;
+                dateLabel.innerText = day;
+                
+                const today = new Date();
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dateLabel.className = 'text-sm font-bold w-7 h-7 flex items-center justify-center rounded-full bg-brand text-white shadow-md';
+                }
+                
+                dateHeader.appendChild(dateLabel);
+                cell.appendChild(dateHeader);
+                
+                const dayEvents = allEvents.filter(e => e.date === dateStr);
+                dayEvents.forEach(ev => {
+                    const evEl = document.createElement('div');
+                    evEl.className = 'text-[11px] sm:text-xs font-bold px-1.5 py-1 rounded-md truncate cursor-pointer shadow-sm border transform hover:scale-105 transition-transform';
+                    
+                    if (ev.type === 'cleaning') {
+                        evEl.className += ' bg-blue-50 text-blue-700 border-blue-200';
+                    } else if (ev.type === 'event') {
+                        evEl.className += ' bg-amber-50 text-amber-700 border-amber-200';
+                    } else { // eco
+                        evEl.className += ' bg-green-50 text-green-700 border-green-200';
+                    }
+                    evEl.innerText = ev.title;
+                    cell.appendChild(evEl);
+                });
+                
+                calendarGrid.appendChild(cell);
+            }
+            
+            document.getElementById('calendar-loading').classList.add('hidden');
+            document.getElementById('calendar-grid').classList.remove('hidden');
+        }
+
+        document.getElementById('prev-month').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+        document.getElementById('next-month').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        async function initFirebase() {
+            try {
+                const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
+
+                if (firebaseConfig) {
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    onAuthStateChanged(auth, (user) => {
+                        if (!user) return;
+                        
+                        const eventsRef = collection(db, 'artifacts', appId, 'public', 'data', 'schedule_events');
+                        
+                        onSnapshot(eventsRef, (snapshot) => {
+                            allEvents = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                            renderCalendar();
+                        }, (error) => {
+                            console.error("Firestore同期エラー:", error);
+                            fallbackData();
+                        });
+                    });
+                } else {
+                    fallbackData();
+                }
+            } catch (error) {
+                console.error("Firebase初期化エラー:", error);
+                fallbackData();
+            }
+        }
+
+        function fallbackData() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            allEvents = [
+                { date: todayStr, title: "テスト: 定期清掃", type: "cleaning" }
+            ];
+            renderCalendar();
+        }
+
+        initFirebase();
+    </script>
+</body>
+</html>
