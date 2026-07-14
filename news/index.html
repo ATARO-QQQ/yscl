@@ -35,6 +35,7 @@
     
     <div class="fixed inset-0 bg-overlay -z-10"></div>
     
+    <!-- ヘッダー (管理ページへのリンクは含みません) -->
     <header class="glass-card sticky top-0 z-50 border-b border-white/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 sm:h-20">
@@ -77,6 +78,7 @@
 
     <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
         
+        <!-- ヒーローセクション -->
         <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-brand">
             <div class="absolute inset-0 pattern-dots text-brand opacity-10 group-hover:opacity-20 transition-opacity"></div>
             <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:-rotate-12 z-0">
@@ -94,8 +96,10 @@
             </div>
         </div>
 
+        <!-- 検索・フィルターセクション -->
         <section class="glass-card rounded-[2rem] p-6 md:p-8 shadow-md border border-white/50">
             <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                <!-- カテゴリフィルター -->
                 <div class="flex flex-wrap gap-2 w-full md:w-auto">
                     <button onclick="filterCategory('all')" id="btn-cat-all" class="category-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-brand text-white">
                         すべて
@@ -111,6 +115,7 @@
                     </button>
                 </div>
                 
+                <!-- 検索バー -->
                 <div class="relative w-full md:w-80">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                         <i data-lucide="search" class="w-5 h-5"></i>
@@ -120,24 +125,31 @@
             </div>
         </section>
 
+        <!-- ニュースコンテンツセクション -->
         <section class="relative">
+            <!-- ローディングインジケータ -->
             <div id="news-loading" class="text-center py-24 text-gray-500 font-bold flex flex-col items-center justify-center bg-white/50 rounded-[2rem] border border-white/50 backdrop-blur-sm shadow-sm">
                 <i data-lucide="loader-2" class="w-12 h-12 animate-spin mb-4 text-brand"></i>
                 ニュースを読み込んでいます...
             </div>
 
+            <!-- 空状態メッセージ -->
             <div id="news-empty" class="hidden text-center py-20 text-gray-500 font-bold flex flex-col items-center justify-center bg-white/50 rounded-[2rem] border border-white/50 backdrop-blur-sm shadow-sm">
                 <i data-lucide="folder-open" class="w-12 h-12 mb-4 text-gray-400"></i>
                 該当するニュースが見つかりませんでした。
             </div>
 
+            <!-- カードグリッド -->
             <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                <!-- JSで動的に追加されます -->
             </div>
         </section>
     </main>
 
+    <!-- 詳細モーダル -->
     <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden animate-fade-in">
         <div class="glass-card w-full max-w-3xl rounded-[2rem] overflow-hidden shadow-2xl border border-white max-h-[90vh] flex flex-col bg-white/95">
+            <!-- モーダルヘッダー -->
             <div class="p-6 border-b border-gray-100 flex justify-between items-start">
                 <div>
                     <div class="flex items-center gap-3 mb-2">
@@ -151,9 +163,12 @@
                 </button>
             </div>
             
+            <!-- モーダルボディ -->
             <div class="p-6 md:p-8 overflow-y-auto flex-grow prose max-w-none text-gray-700 font-medium leading-relaxed" id="modal-content">
+                <!-- コンテンツテキスト -->
             </div>
             
+            <!-- モーダルフッター -->
             <div class="p-6 border-t border-gray-100 bg-gray-50/50 flex justify-between items-center text-sm font-bold text-gray-500">
                 <span id="modal-author" class="flex items-center gap-1.5"><i data-lucide="user" class="w-4 h-4"></i> 投稿者: --</span>
                 <button onclick="closeModal()" class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2.5 rounded-full shadow-md transition-colors">
@@ -163,6 +178,7 @@
         </div>
     </div>
 
+    <!-- フッター (管理用ページへのリンクはありません) -->
     <footer class="bg-gray-900 mt-auto border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -187,6 +203,7 @@
 
     <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
 
+    <!-- Firebase 統合モジュール -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -204,6 +221,7 @@
             other: { label: 'その他', class: 'bg-gray-500 text-white border-gray-600' }
         };
 
+        // Firebase初期化
         async function initFirebase() {
             try {
                 let firebaseConfig;
@@ -228,26 +246,29 @@
 
                 if (firebaseConfig) {
                     const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
                     db = getFirestore(app);
 
-                    const initAuth = async () => {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth);
+                    // プレビュー環境(Canvas)の場合のみ認証手続きを試みる
+                    if (isCanvasEnv) {
+                        auth = getAuth(app);
+                        try {
+                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                                await signInWithCustomToken(auth, __initial_auth_token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (authError) {
+                            console.warn("匿名認証をスキップしました (実環境では影響ありません):", authError.message);
                         }
-                    };
-                    await initAuth();
 
-                    onAuthStateChanged(auth, (authUser) => {
-                        user = authUser;
-                        if (user) {
-                            fetchNewsData();
-                        } else {
-                            fallbackData();
-                        }
-                    });
+                        onAuthStateChanged(auth, (authUser) => {
+                            user = authUser;
+                        });
+                    }
+
+                    // 認証状態に関わらずデータの取得を開始する
+                    fetchNewsData();
+
                 } else {
                     fallbackData();
                 }
@@ -257,8 +278,10 @@
             }
         }
 
+        // Firestoreからニュースを取得
         function fetchNewsData() {
-            if (!user) return;
+            // ログイン中であるかに関わらず、Firestoreのパブリック読み取り権限があれば取得する
+            if (!db) return;
             const newsRef = collection(db, 'artifacts', appId, 'public', 'data', 'news_posts');
 
             onSnapshot(newsRef, (snapshot) => {
@@ -266,15 +289,17 @@
                     id: doc.id,
                     ...doc.data()
                 }));
+                // 日付降順ソート
                 allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
                 renderNews();
             }, (error) => {
-                console.error("Firestore監視エラー:", error);
+                console.warn("Firestoreからのデータ取得に失敗しました (認証がない、またはセキュリティルールの影響):", error.message);
                 fallbackData();
             });
         }
 
+        // ネットワーク切断時などのフォールバックデータ
         function fallbackData() {
             const todayStr = new Date().toISOString().split('T')[0];
             allNews = [
@@ -290,7 +315,7 @@
                     id: 'sample-2',
                     date: '2026-07-10',
                     category: 'report',
-                    title: '中庭のプランター整備と初夏の花植え活動報告',
+                    title: '中庭 of プランター整備と初夏の花植え活動報告',
                     content: '本日の放課後、有志のメンバー15名で中庭のプランターの土壌改良とマリーゴールドの植樹を行いました。夏の暑さに強い品種を選定し、水やりの当番表を作成しました。学校にお越しの際はぜひ色鮮やかに咲くお花をご覧ください。',
                     createdBy: '緑化推進チーム部員'
                 },
@@ -306,12 +331,14 @@
             renderNews();
         }
 
+        // リスト表示のレンダリング
         function renderNews() {
             const newsGrid = document.getElementById('news-grid');
             const loadingEl = document.getElementById('news-loading');
             const emptyEl = document.getElementById('news-empty');
 
-            loadingEl.classList.add('hidden');
+            if (loadingEl) loadingEl.classList.add('hidden');
+            if (!newsGrid) return;
             newsGrid.innerHTML = '';
 
             const filteredNews = allNews.filter(post => {
@@ -323,12 +350,12 @@
             });
 
             if (filteredNews.length === 0) {
-                emptyEl.classList.remove('hidden');
+                if (emptyEl) emptyEl.classList.remove('hidden');
                 newsGrid.classList.add('hidden');
                 return;
             }
 
-            emptyEl.classList.add('hidden');
+            if (emptyEl) emptyEl.classList.add('hidden');
             newsGrid.classList.remove('hidden');
 
             filteredNews.forEach(post => {
@@ -360,6 +387,7 @@
             lucide.createIcons();
         }
 
+        // 詳細モーダル表示
         window.showDetail = function(post) {
             const catInfo = CATEGORIES[post.category] || CATEGORIES.other;
             const modal = document.getElementById('detail-modal');
@@ -369,6 +397,7 @@
             document.getElementById('modal-date').innerText = post.date;
             document.getElementById('modal-title').innerText = post.title;
             
+            // 安全対策を施した上で改行を反映
             const escapedContent = escapeHtml(post.content).replace(/\n/g, '<br>');
             document.getElementById('modal-content').innerHTML = `<p>${escapedContent}</p>`;
             
@@ -384,6 +413,7 @@
             document.body.classList.remove('overflow-hidden');
         };
 
+        // カテゴリのフィルタリング
         window.filterCategory = function(cat) {
             currentFilter = cat;
             
@@ -399,6 +429,7 @@
             renderNews();
         };
 
+        // 検索窓の変更イベント
         window.handleSearch = function() {
             searchQuery = document.getElementById('search-input').value;
             renderNews();
