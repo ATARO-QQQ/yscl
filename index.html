@@ -12,13 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
-
     <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
-
 </head>
 <body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
     
@@ -34,7 +30,7 @@
                 <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
                     <a href="https://ataro-qqq.github.io/yscl/about" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">清掃ラボとは</a>
                     <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">スケジュール</a>
-                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
                     <div class="w-px h-5 bg-gray-300 mx-1"></div>
                     <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
                         <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
@@ -54,7 +50,7 @@
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">清掃ラボとは</a>
                 <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">スケジュール</a>
-                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
+                <a href="https://ataro-qqq.github.io/yscl/news/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
                 <a href="https://ataro-qqq.github.io/yscl/archive" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">アーカイブ</a>
                 <a href="https://ataro-qqq.github.io/yscn/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">YSCN ホーム</a>
                 <div class="border-t border-gray-200 my-2 pt-2">
@@ -71,6 +67,7 @@
 
     <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
         
+        <!-- Hero スライドショー -->
         <section class="relative w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[60vh] min-h-[450px] flex items-center justify-center animate-fade-in-up">
             
             <div class="absolute inset-0 bg-gray-900">
@@ -94,28 +91,43 @@
             </div>
         </section>
 
+        <!-- 新しい「最新のニュース」一覧セクション -->
         <section class="max-w-5xl mx-auto">
-            <a href="https://ataro-qqq.github.io/YSCL-news-2024-04-08-test-beta-1/" class="group block relative overflow-hidden rounded-[2rem] glass-card p-1 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div class="bg-white/60 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-white">
-                    <div class="flex-shrink-0 bg-gradient-to-br from-red-400 to-red-600 p-4 rounded-full text-white group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-md">
-                        <i data-lucide="bell-ring" class="w-6 h-6 animate-pulse"></i>
-                    </div>
-                    <div class="flex-grow">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="bg-red-500 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">速報</span>
-                            <span class="text-sm font-bold text-gray-500">2024.04.08</span>
-                        </div>
-                        <h2 class="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-red-600 transition-colors">
-                            最新の活動報告とスケジュールについて
+            <div class="glass-card rounded-[2rem] p-6 sm:p-8 shadow-lg border-t-4 border-amber-500 relative overflow-hidden">
+                <div class="absolute inset-0 pattern-dots text-amber-500 opacity-5"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl md:text-2xl font-black text-gray-800 flex items-center gap-2">
+                            <i data-lucide="bell" class="w-6 h-6 text-amber-500 animate-pulse"></i> 最新のニュース
                         </h2>
+                        <a href="https://ataro-qqq.github.io/yscl/news/" class="text-sm font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors bg-amber-50 px-4 py-2 rounded-full border border-amber-100 shadow-sm hover:shadow-md">
+                            すべて見る <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
-                    <div class="hidden sm:flex flex-shrink-0 bg-white p-3 rounded-full text-red-500 group-hover:bg-red-50 group-hover:translate-x-2 transition-all shadow-sm">
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    
+                    <div id="latest-news-list" class="space-y-3">
+                        <!-- 読み込み中のプレースホルダー -->
+                        <div class="animate-pulse flex items-center space-x-4 bg-white/60 p-4 rounded-xl">
+                            <div class="h-4 bg-gray-200 rounded w-12"></div>
+                            <div class="h-4 bg-gray-200 rounded w-20"></div>
+                            <div class="h-4 bg-gray-200 rounded flex-1"></div>
+                        </div>
+                        <div class="animate-pulse flex items-center space-x-4 bg-white/60 p-4 rounded-xl">
+                            <div class="h-4 bg-gray-200 rounded w-12"></div>
+                            <div class="h-4 bg-gray-200 rounded w-20"></div>
+                            <div class="h-4 bg-gray-200 rounded flex-1"></div>
+                        </div>
+                        <div class="animate-pulse flex items-center space-x-4 bg-white/60 p-4 rounded-xl">
+                            <div class="h-4 bg-gray-200 rounded w-12"></div>
+                            <div class="h-4 bg-gray-200 rounded w-20"></div>
+                            <div class="h-4 bg-gray-200 rounded flex-1"></div>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </section>
 
+        <!-- メニューカードセクション -->
         <section class="max-w-5xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <a href="https://ataro-qqq.github.io/yscl/about" class="glass-card md:col-span-2 rounded-[2rem] p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
@@ -142,7 +154,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-1 relative z-10">スケジュール</h3>
                     <p class="text-sm text-gray-500 font-medium relative z-10">今後の活動予定</p>
                 </a>
-                <a href="https://ataro-qqq.github.io/yscl/news" class="glass-card rounded-[2rem] p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                <a href="https://ataro-qqq.github.io/yscl/news/" class="glass-card rounded-[2rem] p-6 flex flex-col items-center justify-center text-center group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
                     <div class="absolute inset-0 pattern-grid text-amber-500 opacity-5 group-hover:opacity-10 transition-opacity"></div>
                     
                     <div class="bg-amber-100 text-amber-600 p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform relative z-10">
@@ -201,5 +213,144 @@
     </footer>
 
     <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
+
+    <!-- トップページ用：最新ニュース取得スクリプト -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let db, auth, appId;
+
+        const CATEGORIES = {
+            flash: { label: '速報', class: 'bg-red-500 text-white' },
+            report: { label: '活動報告', class: 'bg-green-500 text-white' },
+            info: { label: 'お知らせ', class: 'bg-blue-500 text-white' },
+            other: { label: 'その他', class: 'bg-gray-500 text-white' }
+        };
+
+        async function initFirebase() {
+            try {
+                let firebaseConfig;
+                let isCanvasEnv = false;
+
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                    appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
+                    isCanvasEnv = true;
+                } else {
+                    firebaseConfig = {
+                        apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
+                        authDomain: "yscl-web-calendar.firebaseapp.com",
+                        projectId: "yscl-web-calendar",
+                        storageBucket: "yscl-web-calendar.firebasestorage.app",
+                        messagingSenderId: "315878967352",
+                        appId: "1:315878967352:web:97611d05d15828c52c3ecd"
+                    };
+                    appId = 'yscl-calendar';
+                }
+
+                if (firebaseConfig) {
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+
+                    if (isCanvasEnv) {
+                        auth = getAuth(app);
+                        try {
+                            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                                await signInWithCustomToken(auth, __initial_auth_token);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (e) {
+                            console.warn("Auth skip:", e);
+                        }
+                    }
+
+                    fetchLatestNews();
+                } else {
+                    renderFallbackNews();
+                }
+            } catch (error) {
+                console.error("Firebase init error:", error);
+                renderFallbackNews();
+            }
+        }
+
+        function fetchLatestNews() {
+            if (!db) return;
+            const newsRef = collection(db, 'artifacts', appId, 'public', 'data', 'news_posts');
+
+            onSnapshot(newsRef, (snapshot) => {
+                let newsList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                // 日付が新しい順に並び替え
+                newsList.sort((a, b) => new Date(b.date) - new Date(a.date));
+                // 上から3件だけを取得
+                const latest3 = newsList.slice(0, 3);
+                renderNewsList(latest3);
+            }, (error) => {
+                console.warn("Firestore error:", error);
+                renderFallbackNews();
+            });
+        }
+
+        function renderFallbackNews() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            const fallback = [
+                { id: '1', date: todayStr, category: 'flash', title: '【速報】清掃ラボの新しいWebシステムがスタートしました！' },
+                { id: '2', date: '2026-07-10', category: 'report', title: '中庭のプランター整備と初夏の花植え活動報告' },
+                { id: '3', date: '2026-07-05', category: 'info', title: '【お知らせ】第3回全体ミーティング開催日程について' }
+            ];
+            renderNewsList(fallback);
+        }
+
+        function renderNewsList(newsItems) {
+            const listEl = document.getElementById('latest-news-list');
+            if (!listEl) return;
+
+            if (newsItems.length === 0) {
+                listEl.innerHTML = '<p class="text-gray-500 font-bold text-sm bg-white/50 p-4 rounded-xl">最新のニュースはまだありません。</p>';
+                return;
+            }
+
+            listEl.innerHTML = ''; // プレースホルダーを消去
+
+            newsItems.forEach(item => {
+                const catInfo = CATEGORIES[item.category] || CATEGORIES.other;
+                // リンク先はニュースページ（yscl/news/）の該当記事などに向けて設定可能
+                const html = `
+                    <a href="https://ataro-qqq.github.io/yscl/news/" class="group block bg-white/80 hover:bg-white p-4 rounded-xl border border-white/80 shadow-sm hover:shadow-md transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                            <div class="flex items-center gap-3 min-w-max">
+                                <span class="${catInfo.class} text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">${catInfo.label}</span>
+                                <span class="text-xs font-bold text-gray-500">${item.date}</span>
+                            </div>
+                            <h3 class="text-sm md:text-base font-bold text-gray-800 group-hover:text-amber-600 transition-colors truncate">${escapeHtml(item.title)}</h3>
+                        </div>
+                    </a>
+                `;
+                listEl.insertAdjacentHTML('beforeend', html);
+            });
+
+            // 動的に追加した要素に対するアイコン再描画（必要であれば）
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        // 初期化処理開始
+        initFirebase();
+    </script>
 </body>
 </html>
