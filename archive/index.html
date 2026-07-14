@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アーカイブ - 横浜創英中学・高等学校 清掃ラボ</title>
+    
+    <link rel="icon" href="https://ataro-qqq.github.io/yscl/img/favicon/YSCL favi.ico" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
+    <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
+    
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        .aspect-video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .aspect-video-container iframe,
+        .aspect-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
+    
+    <div class="fixed inset-0 bg-overlay -z-10"></div>
+    
+    <header class="glass-card sticky top-0 z-50 border-b border-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='https://ataro-qqq.github.io/yscl/';">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomoji.png" alt="清掃ラボ ロゴ" class="h-10 sm:h-12 w-auto drop-shadow-md hover:opacity-80 transition-opacity">
+                </div>
+                
+                <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
+                    <a href="https://ataro-qqq.github.io/yscl/about" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">清掃ラボとは</a>
+                    <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">スケジュール</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
+                    <a href="#" class="text-purple-600 bg-white/70 shadow-sm transition-colors text-sm font-bold px-3 py-2 rounded-lg border border-purple-100">アーカイブ</a>
+                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
+                        <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
+                    </a>
+                </nav>
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brand focus:outline-none p-2 rounded-md hover:bg-white/50 transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                        <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full z-50">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">清掃ラボとは</a>
+                <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">スケジュール</a>
+                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
+                <a href="#" class="block px-3 py-3 rounded-md text-base font-bold text-purple-700 bg-purple-100/50">アーカイブ</a>
+                <a href="https://ataro-qqq.github.io/yscn/" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">YSCN ホーム</a>
+                <div class="border-t border-gray-200 my-2 pt-2">
+                    <a href="https://www.soei.ed.jp/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="school" class="w-5 h-5"></i> 学校公式HP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
+        
+        <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-purple-500">
+            <div class="absolute inset-0 pattern-dots text-purple-600 opacity-10 group-hover:opacity-20 transition-opacity"></div>
+            <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:-rotate-12 z-0">
+                <i data-lucide="history" class="w-64 h-64 text-purple-600"></i>
+            </div>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-purple-100 to-white text-purple-600 rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
+                    <i data-lucide="history" class="w-10 h-10"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tight mb-6">活動アーカイブ</h1>
+                <p class="text-gray-700 font-bold max-w-2xl mx-auto text-lg leading-relaxed bg-white/60 p-5 rounded-2xl backdrop-blur-sm shadow-sm border border-white/50">
+                    清掃ラボの過去の活動記録や、これまでに行ってきたプロジェクトの軌跡を振り返ります。
+                </p>
+            </div>
+        </div>
+
+        <section class="glass-card rounded-[2rem] p-6 md:p-8 shadow-md border border-white/50">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="flex flex-wrap gap-2 w-full md:w-auto" id="filter-buttons">
+                </div>
+                
+                <div class="relative w-full md:w-80">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </span>
+                    <input type="text" id="search-input" placeholder="活動を検索..." class="w-full pl-10 pr-4 py-2.5 rounded-full border border-gray-200 shadow-sm focus:border-purple-400 focus:ring focus:ring-purple-200 focus:ring-opacity-50 bg-white/80 transition-all">
+                </div>
+            </div>
+        </section>
+
+        <section class="relative">
+            <div id="archive-empty" class="hidden text-center py-20 text-gray-500 font-bold flex flex-col items-center justify-center bg-white/50 rounded-[2rem] border border-white/50 backdrop-blur-sm shadow-sm">
+                <i data-lucide="folder-search" class="w-12 h-12 mb-4 text-gray-400"></i>
+                該当する活動記録が見つかりませんでした。
+            </div>
+            
+            <div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+    </main>
+
+    <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden animate-fade-in">
+        <div class="glass-card w-full max-w-4xl rounded-[2rem] overflow-hidden shadow-2xl border border-white max-h-[95vh] flex flex-col bg-white/95">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-start bg-white/80 sticky top-0 z-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="modal-year" class="bg-purple-100 text-purple-700 border border-purple-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm"></span>
+                        <span id="modal-date" class="text-sm font-bold text-gray-500"></span>
+                    </div>
+                    <h2 id="modal-title" class="text-xl md:text-2xl font-black text-gray-800 leading-snug"></h2>
+                </div>
+                <button id="close-modal-btn" class="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-500 hover:text-gray-800 focus:outline-none">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 md:p-8 overflow-y-auto flex-grow">
+                <p id="modal-description" class="text-gray-700 font-medium leading-relaxed mb-8 whitespace-pre-wrap text-[15px] sm:text-base"></p>
+                
+                <div id="modal-media-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                </div>
+            </div>
+            
+            <div class="p-5 border-t border-gray-100 bg-gray-50/80 flex justify-end items-center sticky bottom-0">
+                <button id="close-modal-footer-btn" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-2.5 rounded-full shadow-md transition-colors font-bold text-sm">
+                    閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomojiw.png" alt="清掃ラボ ロゴ" class="h-8 w-auto opacity-75 brightness-0 invert">
+                    <div class="bg-gray-800 px-4 py-2 rounded-full text-sm font-bold text-gray-300 shadow-sm flex items-center gap-2 border border-gray-700">
+                        <i data-lucide="clock" class="w-4 h-4 text-purple-400"></i>
+                        <span id="datetime-display">日時を取得中...</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center md:items-end gap-3 text-sm text-gray-400 font-medium">
+                    <div class="flex flex-wrap justify-center gap-4 mb-1">
+                        <a href="https://www.soei.ed.jp/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">学校HP</a>
+                        <a href="https://www.soei.ed.jp/s_junior/j_club/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">クラブ活動</a>
+                        <button onclick="window.location.reload(true);" class="hover:text-white transition-colors cursor-pointer bg-gray-800 px-3 py-1 rounded-full border border-gray-700">ページ更新</button>
+                    </div>
+                    <p class="text-xs">※お使いの端末によっては、正しく表示されない場合がございます。</p>
+                    <p>&copy; 2023 YOKOHAMA SOEI Junior & Senior High School Cleaning lab</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
+    
+    <script>
+        const archiveData = [
+            {
+                id: 'archive-001',
+                year: '2023',
+                title: '秋の校外清掃大作戦',
+                date: '2023.11.15',
+                description: '地域の皆さまと協力し、学校周辺から最寄り駅までの通学路を中心に清掃活動を行いました。普段何気なく歩いている道も、意識して見ると多くのゴミが落ちていることに気づきました。参加してくれたメンバーのおかげで、見違えるほど綺麗になりました。',
+                media: [
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783441589077.jpg', alt: '活動風景1' },
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783441589139.jpg', alt: '活動風景2' },
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783441589196.jpg', alt: '活動風景3' }
+                ]
+            },
+            {
+                id: 'archive-002',
+                year: '2023',
+                title: '夏休み直前！大掃除プロジェクト',
+                date: '2023.07.20',
+                description: '夏休みを迎える前に、普段の掃除では行き届かない窓のサッシや、エアコンのフィルター清掃を行いました。暑い中での作業でしたが、皆で協力して校舎をピカピカにすることができました。',
+                media: [
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783441589498.jpg', alt: '窓拭きの様子' },
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783983254336.jpg', alt: '掃除の様子' }
+                ]
+            },
+            {
+                id: 'archive-003',
+                year: '2022',
+                title: '中庭プランター整備と花植え',
+                date: '2022.05.10',
+                description: '有志のメンバーで中庭のプランターの土壌改良と花植えを行いました。学校生活に彩りを添えるため、季節の花々を選びました。水やりの当番を決め、継続的に管理していきます。',
+                media: [
+                    { type: 'image', src: 'https://ataro-qqq.github.io/yscl/img/1783441589077.jpg', alt: '花植えの様子' }
+                    // ※動画を追加したい場合は以下のような形式で追加できます。
+                    // { type: 'youtube', src: 'https://www.youtube.com/embed/動画ID' },
+                    // { type: 'video', src: 'パス/動画名.mp4' }
+                ]
+            }
+        ];
+
+        let currentYearFilter = 'all';
+        let currentSearchQuery = '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFilters();
+            renderArchives();
+            setupEventListeners();
+        });
+
+        function setupFilters() {
+            const filterContainer = document.getElementById('filter-buttons');
+            
+            const years = [...new Set(archiveData.map(item => item.year))].sort((a, b) => b - a);
+            
+            let buttonsHtml = `
+                <button data-year="all" class="year-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-purple-600 text-white border border-purple-700">
+                    すべて
+                </button>
+            `;
+            
+            years.forEach(year => {
+                buttonsHtml += `
+                    <button data-year="${year}" class="year-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-white/80 hover:bg-white text-gray-700 border border-gray-200 hover:border-purple-300">
+                        ${year}年度
+                    </button>
+                `;
+            });
+            
+            filterContainer.innerHTML = buttonsHtml;
+
+            document.querySelectorAll('.year-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const year = e.target.getAttribute('data-year');
+                    
+                    document.querySelectorAll('.year-btn').forEach(b => {
+                        b.className = "year-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-white/80 hover:bg-white text-gray-700 border border-gray-200 hover:border-purple-300";
+                    });
+                    e.target.className = "year-btn px-5 py-2.5 rounded-full font-bold text-sm shadow-sm transition-all bg-purple-600 text-white border border-purple-700";
+                    
+                    currentYearFilter = year;
+                    renderArchives();
+                });
+            });
+        }
+
+        function renderArchives() {
+            const grid = document.getElementById('archive-grid');
+            const emptyState = document.getElementById('archive-empty');
+            
+            const filteredData = archiveData.filter(item => {
+                const matchYear = currentYearFilter === 'all' || item.year === currentYearFilter;
+                const matchSearch = currentSearchQuery === '' || 
+                                    item.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
+                                    item.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                return matchYear && matchSearch;
+            });
+
+            if (filteredData.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            grid.innerHTML = '';
+
+            filteredData.forEach(item => {
+                const thumbnail = item.media.find(m => m.type === 'image')?.src || 'https://via.placeholder.com/400x300?text=No+Image';
+
+                const cardHtml = `
+                    <div class="group glass-card rounded-[2rem] p-6 flex flex-col justify-between hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-white cursor-pointer relative overflow-hidden bg-white/70" data-id="${item.id}">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="bg-purple-100 text-purple-700 border-purple-200 border text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                                    ${item.year}年度
+                                </span>
+                                <span class="text-xs font-bold text-gray-500 flex items-center gap-1">
+                                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${item.date}
+                                </span>
+                            </div>
+                            
+                            <div class="w-full h-48 bg-gray-100 rounded-2xl mb-5 overflow-hidden shadow-sm border border-white">
+                                <img src="${thumbnail}" alt="サムネイル" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            
+                            <h3 class="text-lg font-black text-gray-800 mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">${item.title}</h3>
+                        </div>
+                        
+                        <div class="flex items-center justify-end mt-4 pt-4 border-t border-gray-200/60 text-xs font-bold text-gray-400">
+                            <span class="text-purple-600 hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform bg-purple-50 px-3 py-1.5 rounded-lg border border-purple-100">
+                                詳細を見る <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.insertAdjacentHTML('beforeend', cardHtml);
+            });
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+
+            document.querySelectorAll('#archive-grid > div').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.getAttribute('data-id');
+                    openModal(id);
+                });
+            });
+        }
+
+        function setupEventListeners() {
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value;
+                renderArchives();
+            });
+
+            const closeActions = ['close-modal-btn', 'close-modal-footer-btn'];
+            closeActions.forEach(id => {
+                document.getElementById(id).addEventListener('click', closeModal);
+            });
+
+            document.getElementById('detail-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'detail-modal') {
+                    closeModal();
+                }
+            });
+        }
+
+        function openModal(id) {
+            const data = archiveData.find(item => item.id === id);
+            if (!data) return;
+
+            document.getElementById('modal-year').innerText = `${data.year}年度`;
+            document.getElementById('modal-date').innerHTML = `<i data-lucide="calendar" class="w-4 h-4 inline-block mr-1"></i>${data.date}`;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-description').innerText = data.description;
+
+            const gallery = document.getElementById('modal-media-gallery');
+            gallery.innerHTML = '';
+          
+            if (data.media.length === 1) {
+                gallery.className = "grid grid-cols-1 gap-6";
+            } else {
+                gallery.className = "grid grid-cols-1 sm:grid-cols-2 gap-4";
+            }
+
+            data.media.forEach(media => {
+                let mediaHtml = '';
+                
+                if (media.type === 'image') {
+                    mediaHtml = `
+                        <div class="rounded-2xl overflow-hidden shadow-md border-2 border-white bg-gray-100 group">
+                            <img src="${media.src}" alt="${media.alt || '画像'}" class="w-full h-auto max-h-64 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer" onclick="window.open('${media.src}', '_blank')">
+                        </div>
+                    `;
+                } else if (media.type === 'youtube') {
+                    mediaHtml = `
+                        <div class="rounded-2xl overflow-hidden shadow-md border-2 border-white bg-black aspect-video-container">
+                            <iframe src="${media.src}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    `;
+                } else if (media.type === 'video') {
+                    mediaHtml = `
+                        <div class="rounded-2xl overflow-hidden shadow-md border-2 border-white bg-black">
+                            <video controls class="w-full h-auto max-h-64 object-contain">
+                                <source src="${media.src}" type="video/mp4">
+                                お使いのブラウザは動画タグをサポートしていません。
+                            </video>
+                        </div>
+                    `;
+                }
+                
+                gallery.insertAdjacentHTML('beforeend', mediaHtml);
+            });
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden'); 
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            
+            setTimeout(() => {
+                document.getElementById('modal-media-gallery').innerHTML = '';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
