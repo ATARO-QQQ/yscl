@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSCN ホーム - 横浜創英中学・高等学校 清掃ラボ</title>
+    
+    <link rel="icon" href="https://ataro-qqq.github.io/yscl/img/favicon/YSCL favi.ico" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://ataro-qqq.github.io/yscl/script/tailwind.js"></script>
+    <link rel="stylesheet" href="https://ataro-qqq.github.io/yscl/style/style.css">
+    
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        .message-bubble {
+            position: relative;
+        }
+        .message-bubble::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-style: solid;
+            border-color: transparent #f3f4f6 transparent transparent;
+            display: block;
+            width: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-800 antialiased relative">
+    
+    <div class="fixed inset-0 bg-overlay -z-10"></div>
+    
+    <header class="glass-card sticky top-0 z-50 border-b border-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='https://ataro-qqq.github.io/yscl/';">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomoji.png" alt="清掃ラボ ロゴ" class="h-10 sm:h-12 w-auto drop-shadow-md hover:opacity-80 transition-opacity">
+                </div>
+                
+                <nav class="hidden lg:flex space-x-2 xl:space-x-4 items-center">
+                    <a href="https://ataro-qqq.github.io/yscl/about" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">清掃ラボとは</a>
+                    <a href="https://ataro-qqq.github.io/yscl/schedule" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">スケジュール</a>
+                    <a href="https://ataro-qqq.github.io/yscl/news" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">ニュース</a>
+                    <a href="https://ataro-qqq.github.io/yscl/archive" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold px-3 py-2 rounded-lg hover:bg-white/50">アーカイブ</a>
+                    <a href="#" class="text-indigo-600 bg-white/70 shadow-sm transition-colors text-sm font-bold px-3 py-2 rounded-lg border border-indigo-100">YSCN ホーム</a>
+                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <a href="https://www.soei.ed.jp/" class="text-gray-700 hover:text-brand transition-colors text-sm font-bold flex items-center gap-1.5 bg-white/50 px-4 py-2 rounded-full shadow-sm hover:shadow-md">
+                        <i data-lucide="school" class="w-4 h-4"></i> 学校公式HP
+                    </a>
+                </nav>
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-brand focus:outline-none p-2 rounded-md hover:bg-white/50 transition-colors">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                        <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg absolute w-full z-50">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="https://ataro-qqq.github.io/yscl/about" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">清掃ラボとは</a>
+                <a href="https://ataro-qqq.github.io/yscl/schedule" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">スケジュール</a>
+                <a href="https://ataro-qqq.github.io/yscl/news" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">ニュース</a>
+                <a href="https://ataro-qqq.github.io/yscl/archive" class="block px-3 py-3 rounded-md text-base font-bold text-gray-800 hover:text-brand hover:bg-brand-light/50">アーカイブ</a>
+                <a href="#" class="block px-3 py-3 rounded-md text-base font-bold text-indigo-700 bg-indigo-100/50">YSCN ホーム</a>
+                <div class="border-t border-gray-200 my-2 pt-2">
+                    <a href="https://www.soei.ed.jp/" class="flex items-center gap-2 px-3 py-3 rounded-md text-base font-bold text-gray-700 hover:text-brand hover:bg-gray-50">
+                        <i data-lucide="school" class="w-5 h-5"></i> 学校公式HP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 animate-fade-in-up">
+        
+        <div id="view-list" class="space-y-12 block">
+            <div class="glass-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden group shadow-lg border-b-4 border-indigo-500">
+                <div class="absolute inset-0 pattern-diagonal text-indigo-600 opacity-5 group-hover:opacity-10 transition-opacity" style="transform: scaleX(-1);"></div>
+                <div class="absolute -left-10 -bottom-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 transform group-hover:-rotate-12 z-0">
+                    <i data-lucide="network" class="w-64 h-64 text-indigo-600"></i>
+                </div>
+                <div class="absolute right-10 top-10 opacity-[0.02] group-hover:opacity-[0.05] transition-all duration-700 transform group-hover:scale-125 group-hover:rotate-45 z-0 pointer-events-none">
+                    <i data-lucide="sparkles" class="w-40 h-40 text-indigo-500"></i>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-indigo-100 to-white text-indigo-600 rounded-2xl mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 border border-white">
+                        <i data-lucide="messages-square" class="w-10 h-10"></i>
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-black text-gray-800 tracking-tight mb-6">YSCN ホーム (BBS)</h1>
+                    <p class="text-gray-700 font-bold max-w-2xl mx-auto text-lg leading-relaxed bg-white/60 p-5 rounded-2xl backdrop-blur-sm shadow-sm border border-white/50">
+                        校内や地域の清掃活動に関するつぶやき、疑問、お知らせを匿名で共有できる掲示板です。新しいスレッドを立てたり、リプライで交流しましょう！
+                    </p>
+                </div>
+            </div>
+
+            <section class="glass-card rounded-[2rem] p-8 md:p-10 shadow-lg border-t-4 border-indigo-400 relative overflow-hidden group">
+                <div class="absolute inset-0 pattern-grid text-indigo-500 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                <div class="absolute -right-8 -top-8 opacity-[0.03] group-hover:opacity-[0.06] transition-all duration-500 transform group-hover:rotate-12 z-0 pointer-events-none">
+                    <i data-lucide="pen-tool" class="w-48 h-48 text-indigo-600"></i>
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-2xl font-black text-gray-800 mb-6 flex items-center gap-2">
+                        <i data-lucide="pen-line" class="w-6 h-6 text-indigo-600"></i> 新しいスレッドを立てる
+                    </h2>
+                    <form id="form-thread" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2">
+                                <input type="text" id="thread-title" required placeholder="スレッドのタイトル" class="w-full px-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white transition-all font-bold text-gray-800">
+                            </div>
+                            <div>
+                                <input type="text" id="thread-author" placeholder="活動名・ニックネーム (匿名可)" class="w-full px-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white transition-all text-sm font-bold text-gray-600">
+                            </div>
+                        </div>
+                        <div>
+                            <textarea id="thread-content" required rows="3" placeholder="本文を入力してください..." class="w-full px-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white transition-all resize-y text-gray-700"></textarea>
+                        </div>
+                        <div id="thread-error" class="hidden text-red-600 font-bold text-sm bg-red-50 p-3 rounded-lg border border-red-200 flex items-center gap-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> <span id="thread-error-text">不適切な言葉が含まれているため投稿できません。</span>
+                        </div>
+                        <div class="flex justify-end pt-2">
+                            <button type="submit" id="btn-submit-thread" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 border border-indigo-800">
+                                <i data-lucide="send" class="w-5 h-5"></i> 投稿する
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="relative">
+                <div id="loading-indicator" class="text-center py-20 text-gray-500 font-bold flex flex-col items-center justify-center">
+                    <i data-lucide="loader-2" class="w-10 h-10 animate-spin mb-4 text-indigo-500"></i>
+                    データを読み込んでいます...
+                </div>
+                
+                <div id="empty-state" class="hidden text-center py-20 text-gray-500 font-bold flex flex-col items-center justify-center bg-white/50 rounded-[2rem] border border-white/50 backdrop-blur-sm shadow-sm">
+                    <i data-lucide="message-square-dashed" class="w-12 h-12 mb-4 text-gray-400"></i>
+                    まだスレッドがありません。最初のスレッドを立ててみましょう！
+                </div>
+
+                <div id="thread-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                </div>
+            </section>
+        </div>
+        <div id="view-detail" class="space-y-6 hidden">
+            <button onclick="showListView()" class="flex items-center gap-2 text-gray-600 hover:text-indigo-600 font-bold transition-all px-5 py-2.5 bg-white/80 rounded-full shadow-sm border border-white hover:shadow-md backdrop-blur-sm w-fit hover:-translate-x-1">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> スレッド一覧に戻る
+            </button>
+
+            <div class="glass-card rounded-[2rem] p-8 md:p-12 shadow-2xl border-t-4 border-indigo-500 relative overflow-hidden bg-white/90 group">
+                <div class="absolute inset-0 pattern-dots text-indigo-500 opacity-5 group-hover:opacity-10 transition-opacity" style="background-size: 24px 24px;"></div>
+                <div class="absolute -right-10 -bottom-10 opacity-[0.03] transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-6 z-0 pointer-events-none">
+                    <i data-lucide="message-square" class="w-64 h-64 text-indigo-600"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6 text-sm font-bold text-gray-500">
+                        <span id="detail-author" class="flex items-center gap-1.5 bg-gradient-to-r from-indigo-50 to-white text-indigo-700 px-4 py-1.5 rounded-full border border-indigo-200 shadow-sm">
+                            <i data-lucide="user" class="w-4 h-4"></i> <span></span>
+                        </span>
+                        <span id="detail-date" class="flex items-center gap-1.5 bg-white/60 px-3 py-1.5 rounded-full shadow-sm border border-gray-100">
+                            <i data-lucide="clock" class="w-4 h-4"></i> <span></span>
+                        </span>
+                    </div>
+                    <h1 id="detail-title" class="text-2xl md:text-4xl font-black text-gray-800 mb-8 leading-snug tracking-tight"></h1>
+                    <div id="detail-content" class="text-gray-700 leading-relaxed font-medium whitespace-pre-wrap text-base md:text-lg p-6 bg-white/80 rounded-2xl border border-gray-200/60 shadow-inner backdrop-blur-sm"></div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6 pt-4">
+                <h3 class="text-lg font-black text-gray-700 flex items-center gap-2 px-2">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-indigo-500"></i> 
+                    リプライ (<span id="reply-count">0</span>)
+                </h3>
+                
+                <div id="reply-list" class="space-y-5">
+                </div>
+
+                <div class="glass-card rounded-[2rem] p-8 shadow-lg border-t-4 border-indigo-300 mt-10 relative overflow-hidden group">
+                    <div class="absolute inset-0 pattern-diagonal text-indigo-400 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <h4 class="text-lg font-black text-gray-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="corner-down-right" class="w-5 h-5 text-indigo-600"></i> リプライを投稿する
+                        </h4>
+                        <form id="form-reply" class="space-y-4">
+                            <div>
+                                <input type="text" id="reply-author" placeholder="活動名・ニックネーム (匿名可)" class="w-full md:w-1/2 px-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white transition-all text-sm font-bold text-gray-600">
+                            </div>
+                            <div>
+                                <textarea id="reply-content" required rows="3" placeholder="返信を入力..." class="w-full px-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:border-indigo-400 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white transition-all resize-y text-gray-700 text-sm"></textarea>
+                            </div>
+                            <div id="reply-error" class="hidden text-red-600 font-bold text-sm bg-red-50 p-3 rounded-lg border border-red-200 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-4 h-4"></i> <span>不適切な言葉が含まれています。</span>
+                            </div>
+                            <div class="flex justify-end pt-2">
+                                <button type="submit" id="btn-submit-reply" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 border border-indigo-800">
+                                    <i data-lucide="send" class="w-4 h-4"></i> 送信
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 mt-auto border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <img src="https://ataro-qqq.github.io/yscl/img/rogomojiw.png" alt="清掃ラボ ロゴ" class="h-8 w-auto opacity-75 brightness-0 invert">
+                    <div class="bg-gray-800 px-4 py-2 rounded-full text-sm font-bold text-gray-300 shadow-sm flex items-center gap-2 border border-gray-700">
+                        <i data-lucide="clock" class="w-4 h-4 text-indigo-400"></i>
+                        <span id="datetime-display">日時を取得中...</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center md:items-end gap-3 text-sm text-gray-400 font-medium">
+                    <div class="flex flex-wrap justify-center gap-4 mb-1">
+                        <a href="https://www.soei.ed.jp/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">学校HP</a>
+                        <a href="https://www.soei.ed.jp/s_junior/j_club/" class="hover:text-white transition-colors bg-gray-800 px-3 py-1 rounded-full border border-gray-700">クラブ活動</a>
+                        <button onclick="window.location.reload(true);" class="hover:text-white transition-colors cursor-pointer bg-gray-800 px-3 py-1 rounded-full border border-gray-700">ページ更新</button>
+                    </div>
+                    <p class="text-xs">※お使いの端末によっては、正しく表示されない場合がございます。</p>
+                    <p>&copy; 2023 YOKOHAMA SOEI Junior & Senior High School Cleaning lab</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ataro-qqq.github.io/yscl/script/index.js"></script>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const NG_WORDS = ['バカ', 'ばか', 'アホ', 'あほ', '死ね', 'しね', '殺す', 'ころす', 'クソ', 'くそ', 'カス', 'かす', 'うざい', 'キモい', 'きもい'];
+
+        function containsNgWord(text) {
+            if (!text) return false;
+            return NG_WORDS.some(word => text.includes(word));
+        }
+
+        let allThreads = [];
+        let allReplies = [];
+        let currentThreadId = null;
+        let db, auth, appId, user;
+
+        const viewList = document.getElementById('view-list');
+        const viewDetail = document.getElementById('view-detail');
+        const threadListEl = document.getElementById('thread-list');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const emptyState = document.getElementById('empty-state');
+        
+        const formThread = document.getElementById('form-thread');
+        const formReply = document.getElementById('form-reply');
+
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            const h = String(date.getHours()).padStart(2, '0');
+            const min = String(date.getMinutes()).padStart(2, '0');
+            return `${y}/${m}/${d} ${h}:${min}`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        async function initFirebase() {
+            try {
+                let firebaseConfig;
+                let isCanvasEnv = false;
+
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                    appId = typeof __app_id !== 'undefined' ? __app_id : 'yscl-demo-app';
+                    isCanvasEnv = true;
+                } else {
+                    firebaseConfig = {
+                        apiKey: "AIzaSyB0bA9zhU9ffNSkKp5E-ebEEI9mCkzPgms",
+                        authDomain: "yscl-web-calendar.firebaseapp.com",
+                        projectId: "yscl-web-calendar",
+                        storageBucket: "yscl-web-calendar.firebasestorage.app",
+                        messagingSenderId: "315878967352",
+                        appId: "1:315878967352:web:97611d05d15828c52c3ecd"
+                    };
+                    appId = 'yscl-demo-app';
+                }
+
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                const initAuth = async () => {
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (e) {
+                        console.warn("認証エラー:", e.message);
+                    }
+                };
+
+                await initAuth();
+
+                onAuthStateChanged(auth, (authUser) => {
+                    user = authUser;
+                    if (user) {
+                        fetchData();
+                    }
+                });
+
+            } catch (error) {
+                console.error("Firebase初期化失敗:", error);
+                loadingIndicator.innerText = "システムの初期化に失敗しました。";
+            }
+        }
+
+        function fetchData() {
+            if (!user) return;
+
+            const threadsRef = collection(db, 'artifacts', appId, 'public', 'data', 'yscn_threads');
+            onSnapshot(threadsRef, (snapshot) => {
+                allThreads = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); 
+                
+                renderThreads();
+                if (currentThreadId) renderThreadDetail(currentThreadId);
+            }, (error) => {
+                console.error("スレッド取得エラー:", error);
+            });
+
+            const repliesRef = collection(db, 'artifacts', appId, 'public', 'data', 'yscn_replies');
+            onSnapshot(repliesRef, (snapshot) => {
+                allReplies = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)); 
+                
+                renderThreads();
+                if (currentThreadId) renderReplies();
+            }, (error) => {
+                console.error("リプライ取得エラー:", error);
+            });
+        }
+
+        function renderThreads() {
+            loadingIndicator.classList.add('hidden');
+            
+            if (allThreads.length === 0) {
+                emptyState.classList.remove('hidden');
+                threadListEl.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            threadListEl.classList.remove('hidden');
+            threadListEl.innerHTML = '';
+
+            allThreads.forEach(thread => {
+                const replyCount = allReplies.filter(r => r.threadId === thread.id).length;
+                
+                const card = document.createElement('div');
+                card.className = "group glass-card rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border-b-4 border-indigo-500 cursor-pointer relative overflow-hidden bg-white/80";
+                
+                card.innerHTML = `
+                    <div class="absolute inset-0 pattern-dots text-indigo-600 opacity-5 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="absolute -bottom-8 -right-8 opacity-[0.03] group-hover:opacity-10 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12 z-0">
+                        <i data-lucide="message-square" class="w-32 h-32 text-indigo-600"></i>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-gray-500 bg-white/80 px-3 py-1.5 rounded-full shadow-sm border border-gray-100 flex items-center gap-1">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>${formatDate(thread.createdAt)}
+                            </span>
+                            <span class="text-xs font-bold text-indigo-700 bg-indigo-100 px-3 py-1.5 rounded-full border border-indigo-200 flex items-center gap-1.5 shadow-sm">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> ${replyCount}件
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-black text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">${escapeHtml(thread.title)}</h3>
+                        <p class="text-gray-600 font-medium text-sm leading-relaxed mb-6 line-clamp-3 bg-white/40 p-3 rounded-xl border border-white/50 backdrop-blur-sm">${escapeHtml(thread.content)}</p>
+                    </div>
+                    <div class="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-gray-200/60 text-xs font-bold text-gray-500">
+                        <span class="flex items-center gap-1.5 bg-gray-50/80 px-3 py-1.5 rounded-lg border border-gray-100"><i data-lucide="user" class="w-4 h-4 text-indigo-400"></i> ${escapeHtml(thread.author)}</span>
+                        <span class="text-indigo-600 hover:underline flex items-center gap-1 group-hover:translate-x-2 transition-transform bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+                            スレッドを見る <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openThread(thread.id));
+                threadListEl.appendChild(card);
+            });
+
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        window.openThread = function(id) {
+            currentThreadId = id;
+            renderThreadDetail(id);
+            renderReplies();
+            
+            viewList.classList.add('hidden');
+            viewDetail.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        };
+
+        window.showListView = function() {
+            currentThreadId = null;
+            viewDetail.classList.add('hidden');
+            viewList.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        };
+
+        function renderThreadDetail(id) {
+            const thread = allThreads.find(t => t.id === id);
+            if (!thread) return showListView();
+
+            document.getElementById('detail-title').innerText = thread.title;
+            document.getElementById('detail-content').innerHTML = escapeHtml(thread.content).replace(/\n/g, '<br>');
+            document.getElementById('detail-author').querySelector('span').innerText = thread.author;
+            document.getElementById('detail-date').querySelector('span').innerText = formatDate(thread.createdAt);
+        }
+
+        function renderReplies() {
+            const replies = allReplies.filter(r => r.threadId === currentThreadId);
+            const replyListEl = document.getElementById('reply-list');
+            
+            document.getElementById('reply-count').innerText = replies.length;
+            replyListEl.innerHTML = '';
+
+            if (replies.length === 0) {
+                replyListEl.innerHTML = `<div class="text-center py-6 text-gray-400 font-bold text-sm bg-gray-50 rounded-xl border border-dashed border-gray-200">まだリプライはありません。</div>`;
+                return;
+            }
+
+            replies.forEach((reply, index) => {
+                const item = document.createElement('div');
+                item.className = "flex gap-4";
+                
+                item.innerHTML = `
+                    <div class="flex-shrink-0 flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 font-black text-sm border-2 border-white shadow-sm">
+                            ${index + 1}
+                        </div>
+                    </div>
+                    <div class="flex-grow bg-gray-100 rounded-2xl rounded-tl-none p-4 shadow-sm message-bubble border border-gray-200/50">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="font-bold text-sm text-gray-800">${escapeHtml(reply.author)}</span>
+                            <span class="text-[11px] font-bold text-gray-400">${formatDate(reply.createdAt)}</span>
+                        </div>
+                        <div class="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">${escapeHtml(reply.content).replace(/\n/g, '<br>')}</div>
+                    </div>
+                `;
+                replyListEl.appendChild(item);
+            });
+        }
+
+        formThread.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!user) return alert("認証が完了していません。");
+
+            const titleInput = document.getElementById('thread-title');
+            const authorInput = document.getElementById('thread-author');
+            const contentInput = document.getElementById('thread-content');
+            const btn = document.getElementById('btn-submit-thread');
+            const errorEl = document.getElementById('thread-error');
+
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+            const author = authorInput.value.trim() || '匿名さん';
+
+            if (containsNgWord(title) || containsNgWord(content) || containsNgWord(author)) {
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> 送信中...';
+            if (window.lucide) window.lucide.createIcons();
+
+            try {
+                const threadsRef = collection(db, 'artifacts', appId, 'public', 'data', 'yscn_threads');
+                await addDoc(threadsRef, {
+                    title: title,
+                    content: content,
+                    author: author,
+                    createdAt: new Date().toISOString()
+                });
+                
+                formThread.reset();
+            } catch (error) {
+                console.error("スレッド作成エラー:", error);
+                alert("エラーが発生しました。");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i> 投稿する';
+                if (window.lucide) window.lucide.createIcons();
+            }
+        });
+
+        formReply.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!user || !currentThreadId) return;
+
+            const authorInput = document.getElementById('reply-author');
+            const contentInput = document.getElementById('reply-content');
+            const btn = document.getElementById('btn-submit-reply');
+            const errorEl = document.getElementById('reply-error');
+
+            const content = contentInput.value.trim();
+            const author = authorInput.value.trim() || '匿名さん';
+
+            if (containsNgWord(content) || containsNgWord(author)) {
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> 送信中...';
+            if (window.lucide) window.lucide.createIcons();
+
+            try {
+                const repliesRef = collection(db, 'artifacts', appId, 'public', 'data', 'yscn_replies');
+                await addDoc(repliesRef, {
+                    threadId: currentThreadId,
+                    content: content,
+                    author: author,
+                    createdAt: new Date().toISOString()
+                });
+                
+                contentInput.value = '';
+            } catch (error) {
+                console.error("リプライ作成エラー:", error);
+                alert("エラーが発生しました。");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="send" class="w-3.5 h-3.5"></i> 送信';
+                if (window.lucide) window.lucide.createIcons();
+            }
+        });
+
+        initFirebase();
+
+    </script>
+</body>
+</html>
