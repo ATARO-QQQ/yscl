@@ -215,7 +215,6 @@
                 dateHeader.appendChild(dateLabel);
                 cell.appendChild(dateHeader);
                 
-                // 日付判定ロジック
                 const dayEvents = allEvents.filter(ev => {
                     if (!ev.date) return false;
                     
@@ -294,8 +293,6 @@
                     const app = initializeApp(firebaseConfig);
                     db = getFirestore(app);
 
-                    // プレビュー環境（Canvas）の時だけ特殊な認証を行う
-                    // 本番環境（ご自身のサイト）では不要なので Authentication 自体を完全にスキップします
                     if (isCanvasEnv) {
                         auth = getAuth(app);
                         try {
@@ -309,14 +306,12 @@
                         }
                     }
 
-                    // 🔒 エラーの原因だった認証処理をバイパスし、即座にFirestoreデータを取得開始する
                     let eventsRef;
-                    let collectionName = 'schedule_events'; // ⚠️ コレクション名が合っているか確認してください
+                    let collectionName = 'yscl-calendar'; 
 
                     if (isCanvasEnv) {
                         eventsRef = collection(db, 'artifacts', appId, 'public', 'data', collectionName);
                     } else {
-                        // 本番環境：直接データを読み込む
                         eventsRef = collection(db, collectionName);
                         console.log(`📡 [通信開始] コレクション「${collectionName}」を読み込んでいます... (認証なし)`);
                     }
